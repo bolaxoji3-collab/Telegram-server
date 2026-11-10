@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: telegram-ai-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: BOT_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: AI_PROVIDER
+        value: groq
+      - key: TZ_OFFSET_HOURS
+        value: "5"
